@@ -15,22 +15,24 @@ spec:
       labels:
         app: mongodb
     spec:
-      container:
+      containers:
         - name: mongodb
-          image: 4.4-rc-focal
+          image: mongo:4.4-rc-focal
           ports:
             - containerPort: 27017
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  value: mongodb-root-username
+              value: dXNlcm5hbWUK
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: mongodb-secret
+              #     key: mongodb-root-username
             - name: MONGO_INITDB_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  value: mongodb-root-password
+              value: cGFzc3dvcmQK
+              # valueFrom:
+              # secretKeyRef:
+              # name: mongodb-secret
+              # key: mongodb-root-password
 ---
 apiVersion: v1
 kind: Service
